@@ -148,7 +148,7 @@
 &kp LCTRL        &kp LEFT_WIN  &kp LEFT_ALT  &none           &none      &kp SPACE    &kp SPACE  &none                                              &bt BT_CLR_ALL
             >;
 
-            sensor-bindings = <&scroll_up_down>;
+            sensor-bindings = <&scroll_right_left>;
         };
     };
 };
