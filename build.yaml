@@ -36,5 +36,7 @@ include:
     artifact-name: mona2_r-paw3222
   - board: xiao_ble/nrf52840/zmk
     shield: mona2_l rgbled_adapter
+    artifact-name: mona2_l
   - board: xiao_ble/nrf52840/zmk
     shield: settings_reset
+    artifact-name: settings_reset
