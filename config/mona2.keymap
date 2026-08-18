@@ -526,13 +526,13 @@
 
         SCROLL {
             // -----------------------------------------------------------------------------------
-            // |trans|RESET|trans|trans|trans|                      |trans|trans|trans| BT3 | BT0 |
+            // |STUD |RESET|trans|trans|trans|                      |trans|trans|trans| BT3 | BT0 |
             // |trans|trans|trans|trans|trans|                |trans|trans|trans|trans| BT4 | BT1 |
             // |SHIFT|trans|trans|trans|trans|trans|          |trans|trans|trans|trans|trans| BT2 |
             // | CTRL| WIN | ALT | DEL | 英数 |SPACE|          |SPACE| かな |                |BTCLR|
 
             bindings = <
-&trans          &sys_reset    &trans        &trans      &trans                               &trans       &trans  &trans  &bt_sel_3  &bt_sel_0
+&studio_unlock  &sys_reset    &trans        &trans      &trans                               &trans       &trans  &trans  &bt_sel_3  &bt_sel_0
 &trans          &trans        &trans        &trans      &trans                    &trans     &trans       &trans  &trans  &bt_sel_4  &bt_sel_1
 &kp LEFT_SHIFT  &trans        &trans        &trans      &trans       &trans       &trans     &trans       &trans  &trans  &trans     &bt_sel_2
 &kp LCTRL       &kp LEFT_WIN  &kp LEFT_ALT  &kp DELETE  &kp JP_EISU  &kp SPACE    &kp SPACE  &kp JP_KANA                           &bt BT_CLR_ALL
