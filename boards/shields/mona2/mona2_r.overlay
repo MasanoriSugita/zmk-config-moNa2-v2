@@ -92,9 +92,7 @@
 };
 
 &mouse_runtime_input_processor {
-    /* レイヤーに関わらず常にトラックボールの移動をカーソル移動として反映する。
-       クリックは Ctrl+Win 同時押し (MOUSE レイヤー, 位置30/31) または
-       J+K / K+L コンボでレイヤーに依存せず可能。 */
+    /* レイヤーに関わらず常にトラックボールの移動をカーソル移動として反映する。 */
 };
 
 /* ─────────────────────────────────────────────────────────────
@@ -126,5 +124,8 @@
 &trackball_central_listener {
     status = "okay";
     device = <&trackball_central>;
-    input-processors = <&mg &mouse_runtime_input_processor &scroll_runtime_input_processor &zip_scroll_scaler 1 100 &inertial_scroll>;
+    /* トラックボールが動いた瞬間に MOUSE レイヤー (5) を有効化し、
+       3秒間操作がなければ自動でデフォルトレイヤーに戻す (AML)。
+       LANG1/LANG2 キーを押した場合は lt_to_layer_0 により即座にレイヤー0へ復帰する。 */
+    input-processors = <&zip_temp_layer 5 3000 &mg &mouse_runtime_input_processor &scroll_runtime_input_processor &zip_scroll_scaler 1 100 &inertial_scroll>;
 };
