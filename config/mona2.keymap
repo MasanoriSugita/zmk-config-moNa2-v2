@@ -72,14 +72,6 @@
             bindings = <&mkp MB2>;
         };
 
-        // Ctrl+Win を押している間だけ MOUSE レイヤーを有効化
-        // (この間だけトラックボールの移動がカーソルに反映される)
-        ctrl_win_mouse_layer {
-            timeout-ms = <50>;
-            key-positions = <33 34>;  // LCTRL+LEFT_WIN
-            bindings = <&mo MOUSE>;
-        };
-
         // 数字キー（左手）
 
         Num1 {
@@ -517,13 +509,13 @@
             // -----------------------------------------------------------------------------------
             // |STUD |RESET|trans|trans|trans|                      |trans|trans|trans| BT3 | BT0 |
             // |trans|trans|trans|trans|trans|                |trans|trans|trans|trans| BT4 | BT1 |
-            // |SHIFT|trans|trans|trans|trans|trans|          |trans|trans|trans|trans|trans| BT2 |
+            // |SHIFT|trans|trans|trans|trans|trans|          |trans|trans|trans| MB1 | MB2 | BT2 |
             // | CTRL| WIN | ALT | DEL | 英数 |SPACE|          |SPACE| かな |                |BTCLR|
 
             bindings = <
 &studio_unlock  &sys_reset    &trans        &trans      &trans                               &trans       &trans  &trans  &bt BT_SEL 3  &bt BT_SEL 0
 &trans          &trans        &trans        &trans      &trans                    &trans     &trans       &trans  &trans  &bt BT_SEL 4  &bt BT_SEL 1
-&kp LEFT_SHIFT  &trans        &trans        &trans      &trans       &trans       &trans     &trans       &trans  &trans  &trans        &bt BT_SEL 2
+&kp LEFT_SHIFT  &trans        &trans        &trans      &trans       &trans       &trans     &trans       &trans  &trans  &mkp MB1      &mkp MB2      &bt BT_SEL 2
 &kp LCTRL       &kp LEFT_WIN  &kp LEFT_ALT  &kp DELETE  &kp JP_EISU  &kp SPACE    &kp SPACE  &kp JP_KANA                                &bt BT_CLR_ALL
             >;
 
