@@ -87,8 +87,8 @@
     xy-to-scroll-enabled;
     y-invert;
     active-layers = <0x000000C0>; /* layer6 + layer7 */
-    scale-multiplier = <100>;
-    scale-divisor = <1>;   /* zip_scroll_scaler 1/100 との組み合わせで等倍速 (DYA Studio で調整可) */
+    scale-multiplier = <40>;
+    scale-divisor = <1>;   /* zip_scroll_scaler 1/100 と組み合わせて 0.4倍速 (以前は100=等倍で速すぎた) */
 };
 
 &mouse_runtime_input_processor {
