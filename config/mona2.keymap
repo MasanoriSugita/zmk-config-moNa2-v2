@@ -58,18 +58,26 @@
             key-positions = <11 10>;
         };
 
-        // マウスクリック (M+、 と 、+。 の同時押し)
+        // マウスクリック (J+K, K+L の同時押し)
 
-        m_comma_mb1 {
+        jk_mb1 {
             timeout-ms = <30>;
-            key-positions = <29 30>;  // M+、
+            key-positions = <17 18>;  // J+K
             bindings = <&mkp MB1>;
         };
 
-        comma_period_mb2 {
+        kl_mb2 {
             timeout-ms = <30>;
-            key-positions = <30 31>;  // 、+。
+            key-positions = <18 19>;  // K+L
             bindings = <&mkp MB2>;
+        };
+
+        // Ctrl+Win を押している間だけ MOUSE レイヤーを有効化
+        // (この間だけトラックボールの移動がカーソルに反映される)
+        ctrl_win_mouse_layer {
+            timeout-ms = <50>;
+            key-positions = <33 34>;  // LCTRL+LEFT_WIN
+            bindings = <&mo MOUSE>;
         };
 
         // 数字キー（左手）
