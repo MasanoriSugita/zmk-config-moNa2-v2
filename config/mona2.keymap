@@ -58,17 +58,17 @@
             key-positions = <11 10>;
         };
 
-        // マウスクリック (layer_2 の英数ホールドで矢印使用)
+        // マウスクリック (M+、 と 、+。 の同時押し)
 
-        jk_mb1 {
+        m_comma_mb1 {
             timeout-ms = <30>;
-            key-positions = <17 18>;  // J+K
+            key-positions = <29 30>;  // M+、
             bindings = <&mkp MB1>;
         };
 
-        kl_mb2 {
+        comma_period_mb2 {
             timeout-ms = <30>;
-            key-positions = <18 19>;  // K+L
+            key-positions = <30 31>;  // 、+。
             bindings = <&mkp MB2>;
         };
 
