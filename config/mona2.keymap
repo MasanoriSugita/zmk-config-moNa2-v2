@@ -61,54 +61,54 @@
         // 数字キー（左手）
 
         Num1 {
-            bindings = <&mo1>;
+            bindings = <&num1_reset>;
             key-positions = <0 1>;  // Q+W
         };
 
         Num2 {
-            bindings = <&mo2>;
+            bindings = <&num2_reset>;
             key-positions = <1 2>;  // W+E
         };
 
         Num3 {
-            bindings = <&mo3>;
+            bindings = <&num3_reset>;
             key-positions = <2 3>;  // E+R
         };
 
         Num4 {
-            bindings = <&mo4>;
+            bindings = <&num4_reset>;
             key-positions = <3 4>;  // R+T
         };
 
         Num5 {
-            bindings = <&mo5>;
+            bindings = <&num5_reset>;
             key-positions = <13 14>;  // F+G
         };
 
         // 数字キー（右手）
 
         Num6 {
-            bindings = <&mo6>;
+            bindings = <&num6_reset>;
             key-positions = <5 6>;  // Y+U
         };
 
         Num7 {
-            bindings = <&mo7>;
+            bindings = <&num7_reset>;
             key-positions = <6 7>;  // U+I
         };
 
         Num8 {
-            bindings = <&mo8>;
+            bindings = <&num8_reset>;
             key-positions = <7 8>;  // I+O
         };
 
         Num9 {
-            bindings = <&mo9>;
+            bindings = <&num9_reset>;
             key-positions = <8 9>;  // O+P
         };
 
         Num0 {
-            bindings = <&mo0>;
+            bindings = <&num0_reset>;
             key-positions = <19 20>;  // L+Enter
         };
 
@@ -129,6 +129,93 @@
             #binding-cells = <1>;
             bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
             label = "TO_LAYER_0";
+        };
+
+        // 英数/かなキーをホールドして layer_2/layer_1 に入る瞬間に一回だけ
+        // MOUSE レイヤー(5)を強制解除する。以降の連続数字入力は
+        // このマクロを再実行しないので壊さない。
+        mo_cancel_mouse: mo_cancel_mouse {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings =
+                <&macro_press &to 0>,
+                <&macro_param_1to1 &macro_press &mo MACRO_PLACEHOLDER>,
+                <&macro_pause_for_release>,
+                <&macro_param_1to1 &macro_release &mo MACRO_PLACEHOLDER>;
+            label = "MO_CANCEL_MOUSE";
+        };
+
+        // 数字コンボ (mo1-mo9, mo0) はコンボ経由のため AML の
+        // 「他キー押下で自動解除」の対象外になる。&to 0 を明示的に挟んで
+        // MOUSE レイヤーを確実に解除してから数字/記号を出力する。
+        num1_reset: num1_reset {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to 0 &mo1>;
+            label = "NUM1_RESET";
+        };
+
+        num2_reset: num2_reset {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to 0 &mo2>;
+            label = "NUM2_RESET";
+        };
+
+        num3_reset: num3_reset {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to 0 &mo3>;
+            label = "NUM3_RESET";
+        };
+
+        num4_reset: num4_reset {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to 0 &mo4>;
+            label = "NUM4_RESET";
+        };
+
+        num5_reset: num5_reset {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to 0 &mo5>;
+            label = "NUM5_RESET";
+        };
+
+        num6_reset: num6_reset {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to 0 &mo6>;
+            label = "NUM6_RESET";
+        };
+
+        num7_reset: num7_reset {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to 0 &mo7>;
+            label = "NUM7_RESET";
+        };
+
+        num8_reset: num8_reset {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to 0 &mo8>;
+            label = "NUM8_RESET";
+        };
+
+        num9_reset: num9_reset {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to 0 &mo9>;
+            label = "NUM9_RESET";
+        };
+
+        num0_reset: num0_reset {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to 0 &mo0>;
+            label = "NUM0_RESET";
         };
 
         bt_sel_0: bt_sel_0 {
@@ -196,6 +283,17 @@
             compatible = "zmk,behavior-hold-tap";
             label = "LAYER_TAP_TO_0";
             bindings = <&mo>, <&to_layer_0>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+        };
+
+        // 英数/かなキー用: ホールドで layer_2/layer_1 に入る際に MOUSE レイヤーを
+        // 自動解除してから入る。タップは従来通り to_layer_0 でリセット。
+        lt_cancel_mouse: lt_cancel_mouse {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LAYER_TAP_CANCEL_MOUSE";
+            bindings = <&mo_cancel_mouse>, <&to_layer_0>;
 
             #binding-cells = <2>;
             tapping-term-ms = <200>;
@@ -376,7 +474,7 @@
 &kp Q             &kp W         &kp E         &kp R       &kp T                                      &kp Y          &kp U  &kp I       &kp O      &kp P
 &ctrl_a LCTRL A   &kp S         &kp D         &kp F       &kp G                       &kakko_square  &kp H          &kp J  &kp K       &kp L      &kp ENTER
 &mt LEFT_SHIFT Z  &kp X         &kp C         &kp V       &kp B          &kp SLASH    &kakko_round   &kp N          &kp M  &kp COMMA   &kp PERIOD  &kp RIGHT_SHIFT
-&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &kp DELETE  &lt_to_layer_0 2 JP_EISU  &kp SPACE    &kp SPACE      &lt_to_layer_0 1 JP_KANA                                &kp BACKSPACE
+&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &kp DELETE  &lt_cancel_mouse 2 JP_EISU  &kp SPACE    &kp SPACE      &lt_cancel_mouse 1 JP_KANA                                &kp BACKSPACE
             >;
 
             sensor-bindings = <&scroll_up_down>;
