@@ -125,7 +125,10 @@
     status = "okay";
     device = <&trackball_central>;
     /* トラックボールが動いた瞬間に MOUSE レイヤー (5) を有効化し、
-       3秒間操作がなければ自動でデフォルトレイヤーに戻す (AML)。
+       1.5秒間操作がなければ自動でデフォルトレイヤーに戻す (AML)。
+       他のキーを押せば即座に解除されるが、、/。(MB1/MB2) 自体は
+       レイヤー上のキーなので解除トリガーにならないため、
+       誤クリックの窓を短くするためタイムアウトを短縮している。
        LANG1/LANG2 キーを押した場合は lt_to_layer_0 により即座にレイヤー0へ復帰する。 */
-    input-processors = <&zip_temp_layer 5 3000 &mg &mouse_runtime_input_processor &scroll_runtime_input_processor &zip_scroll_scaler 1 100 &inertial_scroll>;
+    input-processors = <&zip_temp_layer 5 1000 &mg &mouse_runtime_input_processor &scroll_runtime_input_processor &zip_scroll_scaler 1 100 &inertial_scroll>;
 };
